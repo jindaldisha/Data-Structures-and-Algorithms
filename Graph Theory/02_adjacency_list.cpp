@@ -25,11 +25,13 @@ template <class T>
 class Graph{
     int V;
     map<T, map<T, int>> adjList;
+    bool biDir;
 public:
-    Graph(int v){
+    Graph(int v, bool bi){
         V = v;
+        biDir = bi;
     }
-    void addEdge(T u, T v, int w, bool biDir = false){
+    void addEdge(T u, T v, int w){
         adjList[u][v] = w;
         if(biDir){
             adjList[v][u] = w;
@@ -63,7 +65,7 @@ void createGraph(Graph<T> &g){
 }
 
 int main(){
-    Graph<string> g(4);
+    Graph<string> g(4, false);
     createGraph(g);
     g.printGraph();
 }
